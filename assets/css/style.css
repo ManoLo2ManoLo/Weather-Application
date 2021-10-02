@@ -1,0 +1,19 @@
+nav {
+    background-color: blue;
+    color:white;
+}
+
+.low {
+    background-color: green;
+    color: white;
+}
+
+.moderate {
+    background-color: orange;
+    color:white;
+}
+
+.severe {
+    background-color: red;
+    color:white;
+}
