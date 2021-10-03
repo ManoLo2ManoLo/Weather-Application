@@ -25,11 +25,11 @@ This code was typed and revised by Manuel Canas-Menendez (ManoLo2ManoLo).
 
 # NECESSARY FILES
 index.html (the structure of the webpage) <br />
-----assets folder <br />
---------css folder <br />
-------------style.css (the styling of the webpage) <br />
---------js folder <br />
-------------script.js (the functionality of the webpage)
+-assets folder <br />
+--css folder <br />
+---style.css (the styling of the webpage) <br />
+--js folder <br />
+---script.js (the functionality of the webpage)
 
 # SCREENSHOTS
 In this image, this is a what the application looks like if the user loads it up for the first time
@@ -50,6 +50,6 @@ In this image, you can see what would see an error message to be displayed in th
 In this image, you can see what the search history list would look like if it had a few cities in the local storage.
 ![WeatherHistoryList](https://user-images.githubusercontent.com/88364269/135751793-5eeeec34-ba40-4cc4-bfe6-f35c666623a2.png)
 
-In this image, you can see a semi-hidden clear search history button (before and after hover). This would clear what was stored inside the local storage.
+In this image, you can see a semi-hidden clear search history button (before and after hover). This would clear what was stored inside the local storage. <br />
 ![WeatherClear](https://user-images.githubusercontent.com/88364269/135752159-e03d7675-6a7f-4750-be85-6d949c1b7169.png)
 ![WeatherClearHover](https://user-images.githubusercontent.com/88364269/135752163-2b881a58-27fa-4d38-8d94-786b7a293b4c.png)
