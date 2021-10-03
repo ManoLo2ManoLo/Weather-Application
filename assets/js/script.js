@@ -156,6 +156,18 @@ function generateButton() {
 
         btnList.appendChild(cityBtn);
     }
+
+    $("button").each(function() {
+        $(this).on("click", function(event) {
+            cityName = $(this)[0].innerHTML;
+            if (cityName && cityName != 'Search' && cityName != 'Clear Search History') {
+                event.preventDefault();
+                weatherArea.style.display="block";
+                fiveDayForecastEl.innerHTML = '';
+                generateLocation();
+            }
+        });
+    });
 }
 
 // Function for when user searches for a city name
@@ -168,6 +180,7 @@ searchBtn.onclick = function() {
         fiveDayForecastEl.innerHTML = '';
         generateLocation();
         localStorage.setItem(cityName, '');
+        $('#btnList').children().remove();
         generateButton();
     }
 }
@@ -193,15 +206,4 @@ clearBtn.onclick = function() {
 // Function to create search history button when webpage is loaded
 $(document).ready(function () {
     generateButton();
-    $("button").each(function() {
-        $(this).on("click", function(event) {
-            cityName = $(this)[0].innerHTML;
-            if (cityName && cityName != 'Search' && cityName != 'Clear Search History') {
-                event.preventDefault();
-                weatherArea.style.display="block";
-                fiveDayForecastEl.innerHTML = '';
-                generateLocation();
-            }
-        });
-    });
 })
