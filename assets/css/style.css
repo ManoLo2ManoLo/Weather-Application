@@ -1,6 +1,81 @@
+:root {
+    --light: #FFFFFF;
+    --blue: #20A4F3;
+    --aqua: #59F8E8;
+    --red: #941C2F;
+    --dark: #03191E;
+}
+
+* {
+    font-family: Calibri;
+    color: var(--light);
+}
+
+body {
+    background-color: var(--dark);
+}
+
 nav {
-    background-color: blue;
+    background-color: var(--blue);
     color:white;
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    border-bottom: 5px solid var(--aqua);
+}
+
+nav h1 {
+    font-weight: bolder;
+}
+
+.container-fluid {
+    margin-top: 20px;
+    width: 90%;
+}
+
+input {
+    background-color: var(--red);
+    border: solid 3px var(--light);
+}
+
+.searchBtn {
+    margin-top: 10px;
+    background-color: var(--blue);
+    border: double 3px var(--aqua);
+    border-radius: 20px;
+}
+
+.searchBtn:hover {
+    cursor: pointer;
+    background-color: var(--aqua);
+    border: double 3px var(--blue);
+    color: var(--dark)
+}
+
+.weatherArea {
+    padding: 20px;
+    border: solid 5px var(--red);
+}
+
+.title {
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+.uvEl {
+    width: 20%;
+    border-radius: 20px;
+}
+
+.weatherCard {
+    background-color: var(--blue);
+    border: double 3px var(--aqua);
+    margin: 10px;
+}
+
+.icon {
+    height: 25;
+    width: auto;
 }
 
 .low {
@@ -16,4 +91,13 @@ nav {
 .severe {
     background-color: red;
     color:white;
+}
+
+.fiveDay {
+    margin-top: 30px;
+}
+
+.miniTitle {
+    font-size: large;
+    font-weight: bold;
 }
