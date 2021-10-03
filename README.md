@@ -41,10 +41,10 @@ Link to J Query (javascript): https://code.jquery.com/jquery-3.5.0.min.js
 Link to OpenWeather's Website: https://openweathermap.org/ <br />
 
 Link to OpenWeather's API (to get longitude and latitude from the city name): <br />
-api.openweathermap.org/data/2.5/weather?q=(CITY NAME)&appid=(MY API KEY); <br />
+https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid={myApiKey}; <br />
 
 Link to OpenWeather's API (from longitude and latitude): <br />
-https://api.openweathermap.org/data/2.5/onecall?lat=(LATITUDE)&lon=(LONGITUDE)&exclude=minutely,hourly,alerts&appid=(MY API KEY)
+https://api.openweathermap.org/data/2.5/onecall?lat={latitude}&lon={longitude}&exclude=minutely,hourly,alerts&appid={myApiKey}
 
 # SCREENSHOTS
 In this image, this is a what the application looks like if the user loads it up for the first time
