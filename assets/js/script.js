@@ -12,12 +12,14 @@ const weatherArea = document.getElementById('weatherArea');
 
 // Elements that are buttons
 const searchBtn = document.getElementById('searchBtn');
+const btnList = document.getElementById('btnList');
 
 // Some Variables
 let cityName = '';
 let locationArray = [];
 let weatherArray = [];
 let currentDay;
+let iconUrl = '';
 
 // Server API to gather Location for the Weather
 function generateLocation() {
@@ -31,6 +33,8 @@ function generateLocation() {
                 locationArray = data;
                 generateWeather();
             })
+        } else {
+            errorMessage();
         }
     })
 }
@@ -60,11 +64,10 @@ function displayWeather() {
     let kelvinToFahrenheit = ((((c.temp - 273.15) * 9) / 5) + 32)
     let kel2Fah = kelvinToFahrenheit.toFixed(2);
     let uvIndex = c.uvi
-    let iconUrl = 'http://openweathermap.org/img/w/' + c.weather[0].icon + ".png"
+    iconUrl = 'http://openweathermap.org/img/w/' + c.weather[0].icon + ".png"
 
     dateEl.textContent = moment(c.dt, 'X').format('MM/DD/YYYY') + ' ';
     $('#iconEl').attr('src', iconUrl);
-    console.log(c.weather)
     cityEl.textContent = locationArray.name;
     tempEl.textContent = 'Temp: ' + kel2Fah + '\u00B0F';
     windEl.textContent = 'Wind: ' + c.wind_speed + ' MPH';
@@ -124,7 +127,18 @@ function displayWeather() {
         dayEl.appendChild(dayRowEl);
         fiveDayForecastEl.appendChild(dayEl);
     }
+}
 
+function generateButton() {
+    for(let j=localStorage.length - 1; j >= 0; j--) {
+        const key = localStorage.key(j)
+
+        var cityBtn = document.createElement('button');
+        cityBtn.classList = 'cityNameBtn'
+        cityBtn.innerText = `${key}`;
+
+        btnList.appendChild(cityBtn);
+    }
 }
 
 // Function for when user searches for a city name
@@ -132,8 +146,36 @@ searchBtn.onclick = function() {
     cityName = searchEl.value;
 
     if (cityName) {
+        searchEl.value = '';
         weatherArea.style.display="block";
         fiveDayForecastEl.innerHTML = '';
         generateLocation();
+        localStorage.setItem(cityName, '');
+        generateButton();
     }
 }
+
+function errorMessage() {
+    $('#iconEl').attr('src', null);
+    dateEl.textContent = ''
+    cityEl.textContent = 'Error in finding the city of: ' + cityName;
+    tempEl.textContent = 'Please enter a valid city name, or check your spelling.'
+    windEl.textContent = 'Sorry for the inconvience.'
+    humidEl.textContent = 'Have a nice day!'
+    uvEl.textContent = ''
+}
+
+$(document).ready(function () {
+    generateButton();
+    $("button").each(function() {
+        $(this).on("click", function(event) {
+            cityName = $(this)[0].innerHTML;
+            if (cityName && cityName != 'search') {
+                event.preventDefault();
+                weatherArea.style.display="block";
+                fiveDayForecastEl.innerHTML = '';
+                generateLocation();
+            }
+        });
+    });
+})

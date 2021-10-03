@@ -52,9 +52,29 @@ input {
     color: var(--dark)
 }
 
+.seperation {
+    padding-bottom: 20px;
+    border-bottom: solid 3px var(--light);
+}
+
+.cityNameBtn {
+    margin-top: 25px;
+    background-color: var(--red);
+    border: double 3px var(--light);
+    border-radius: 20px;
+}
+
+.cityNameBtn:hover {
+    cursor: pointer;
+    background-color: var(--light);
+    border: double 3px var(--red);
+    color: var(--red);
+}
+
 .weatherArea {
+    background-color: var(--red);
     padding: 20px;
-    border: solid 5px var(--red);
+    border: double 5px var(--aqua);
 }
 
 .title {
@@ -68,6 +88,7 @@ input {
 }
 
 .weatherCard {
+    padding: 20px;
     background-color: var(--blue);
     border: double 3px var(--aqua);
     margin: 10px;
