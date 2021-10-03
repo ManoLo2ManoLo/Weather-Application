@@ -11,14 +11,17 @@ const fiveDayForecastEl = document.getElementById('fiveDayForecastEl');
 const weatherArea = document.getElementById('weatherArea');
 
 // Elements that are buttons
+const clearBtn = document.getElementById('clearBtn');
 const searchBtn = document.getElementById('searchBtn');
 const btnList = document.getElementById('btnList');
+
 
 // Some Variables
 let cityName = '';
 let locationArray = [];
 let weatherArray = [];
 let currentDay;
+var cityBtn;
 let iconUrl = '';
 
 // Server API to gather Location for the Weather
@@ -75,12 +78,18 @@ function displayWeather() {
     uvEl.textContent = 'UV Index: ' + uvIndex;
     
     $('#uvEl').each(function() {
-        if (uvIndex < 3) {
-            $(this).addClass('low');
-        } else if (uvIndex >= 3 && uvIndex < 6) {
-            $(this).addClass('moderate');
-        } else {
+        if (uvIndex > 6) {
             $(this).addClass('severe');
+            $(this).removeClass('moderate');
+            $(this).removeClass('low');
+        } else if (uvIndex <= 6 && uvIndex > 3) {
+            $(this).addClass('moderate');
+            $(this).removeClass('severe');
+            $(this).removeClass('low');
+        } else {
+            $(this).addClass('low');
+            $(this).removeClass('moderate');
+            $(this).removeClass('severe');
         }
     });
 
@@ -130,10 +139,12 @@ function displayWeather() {
 }
 
 function generateButton() {
-    for(let j=localStorage.length - 1; j >= 0; j--) {
+    //btnList.removeChild(cityBtn);
+
+    for(let j = 0; j < localStorage.length; j++) {
         const key = localStorage.key(j)
 
-        var cityBtn = document.createElement('button');
+        cityBtn = document.createElement('button');
         cityBtn.classList = 'cityNameBtn'
         cityBtn.innerText = `${key}`;
 
@@ -165,12 +176,17 @@ function errorMessage() {
     uvEl.textContent = ''
 }
 
+clearBtn.onclick = function() {
+    localStorage.clear();
+    location.reload();
+}
+
 $(document).ready(function () {
     generateButton();
     $("button").each(function() {
         $(this).on("click", function(event) {
             cityName = $(this)[0].innerHTML;
-            if (cityName && cityName != 'search') {
+            if (cityName && cityName != 'Search' && cityName != 'Clear Search History') {
                 event.preventDefault();
                 weatherArea.style.display="block";
                 fiveDayForecastEl.innerHTML = '';
