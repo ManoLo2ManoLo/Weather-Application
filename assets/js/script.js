@@ -7,7 +7,6 @@ const windEl = document.getElementById('windEl');
 const humidEl = document.getElementById('humidEl');
 const uvEl = document.getElementById('uvEl');
 const fiveDayForecastEl = document.getElementById('fiveDayForecastEl');
-
 const weatherArea = document.getElementById('weatherArea');
 
 // Elements that are buttons
@@ -30,9 +29,7 @@ function generateLocation() {
 
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
-            console.log(response);
             response.json().then (function(data) {
-                console.log(data);
                 locationArray = data;
                 generateWeather();
             })
@@ -61,22 +58,26 @@ function generateWeather() {
 
 }
 
-// 
+// Function to display the weather forecast
 function displayWeather() {
+    // Start of Current Day Weather Forecast
     let c = weatherArray.current;
     let kelvinToFahrenheit = ((((c.temp - 273.15) * 9) / 5) + 32)
     let kel2Fah = kelvinToFahrenheit.toFixed(2);
     let uvIndex = c.uvi
     iconUrl = 'http://openweathermap.org/img/w/' + c.weather[0].icon + ".png"
 
+    // Replaces Text in the HTML File
     dateEl.textContent = moment(c.dt, 'X').format('MM/DD/YYYY') + ' ';
     $('#iconEl').attr('src', iconUrl);
+    $('#iconEl').attr('alt', c.weather[0].description);
     cityEl.textContent = locationArray.name;
     tempEl.textContent = 'Temp: ' + kel2Fah + '\u00B0F';
     windEl.textContent = 'Wind: ' + c.wind_speed + ' MPH';
     humidEl.textContent = 'Humidity: ' + c.humidity + ' %';
     uvEl.textContent = 'UV Index: ' + uvIndex;
     
+    // Give UV Index a Class
     $('#uvEl').each(function() {
         if (uvIndex > 6) {
             $(this).addClass('severe');
@@ -92,12 +93,15 @@ function displayWeather() {
             $(this).removeClass('severe');
         }
     });
+    // End of Current Day Weather Forecast
 
+    // Start Of 5 Day Weather Forecast
     var titleEl = document.createElement('p');
     titleEl.innerHTML = '5-Day Forecast:';
     titleEl.classList = 'title fiveDay';
     fiveDayForecastEl.appendChild(titleEl);
 
+    // For Loop to Create Each Day's of the Weather Cards
     for (currentDay = 1; currentDay < 6; currentDay++) {
         let d = weatherArray.daily[currentDay]
         let kelvinToFahrenheit = ((((d.temp.day - 273.15) * 9) / 5) + 32)
@@ -118,6 +122,7 @@ function displayWeather() {
         var dayIconEl = document.createElement('img');
         dayIconEl.classList = 'icon';
         $(dayIconEl).attr('src', dayIconUrl);
+        $(dayIconEl).attr('alt', d.weather[0].description);
 
         var dayTempEl = document.createElement('p');
         dayTempEl.innerHTML = 'Temp: ' + kel2Fah + '\u00B0F';
@@ -128,6 +133,7 @@ function displayWeather() {
         var dayHumidEl = document.createElement('p');
         dayHumidEl.innerHTML = 'Humidity: ' + d.humidity + " %";
 
+        // Declares which elements have childrens
         dayRowEl.appendChild(dayDateEl);
         dayRowEl.appendChild(dayIconEl);
         dayRowEl.appendChild(dayTempEl);
@@ -135,12 +141,12 @@ function displayWeather() {
         dayRowEl.appendChild(dayHumidEl);
         dayEl.appendChild(dayRowEl);
         fiveDayForecastEl.appendChild(dayEl);
+        // End of 5 Day Weather Forecast
     }
 }
 
+// Function to generate the search history button list
 function generateButton() {
-    //btnList.removeChild(cityBtn);
-
     for(let j = 0; j < localStorage.length; j++) {
         const key = localStorage.key(j)
 
@@ -166,21 +172,24 @@ searchBtn.onclick = function() {
     }
 }
 
+// Function if the user enters an invalid city name
 function errorMessage() {
     $('#iconEl').attr('src', null);
     dateEl.textContent = ''
-    cityEl.textContent = 'Error in finding the city of: ' + cityName;
+    cityEl.textContent = 'Error in finding your city!';
     tempEl.textContent = 'Please enter a valid city name, or check your spelling.'
     windEl.textContent = 'Sorry for the inconvience.'
     humidEl.textContent = 'Have a nice day!'
     uvEl.textContent = ''
 }
 
+// Function to clear search history
 clearBtn.onclick = function() {
     localStorage.clear();
     location.reload();
 }
 
+// Function to create search history button when webpage is loaded
 $(document).ready(function () {
     generateButton();
     $("button").each(function() {

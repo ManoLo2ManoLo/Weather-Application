@@ -1,9 +1,9 @@
 :root {
     --light: #FFFFFF;
     --blue: #20A4F3;
-    --darkblue: #229DE7;
+    --darkblue: #2292d8;
     --aqua: #59F8E8;
-    --red: #941C2F;
+    --gray: #5d88a3;
     --dark: #03191E;
 }
 
@@ -16,6 +16,7 @@ body {
     background-color: var(--dark);
 }
 
+/* Start of Navbar Styling */
 nav {
     background-color: var(--blue);
     color:white;
@@ -44,13 +45,15 @@ nav h1 {
     background-color: var(--darkblue);
     color: var(--blue);
 }
+/* End of Nav BarStyling */
 
 .container-fluid {
     width: 90%;
 }
 
+/* Start of Side Area Styling */
 input {
-    background-color: var(--red);
+    background-color: var(--gray);
     border: solid 3px var(--light);
     border-radius: 10px;
 }
@@ -77,7 +80,7 @@ input {
 
 .cityNameBtn {
     margin-top: 25px;
-    background-color: var(--red);
+    background-color: var(--gray);
     border: double 3px var(--light);
     border-radius: 20px;
 }
@@ -85,12 +88,14 @@ input {
 .cityNameBtn:hover {
     cursor: pointer;
     background-color: var(--light);
-    border: double 3px var(--red);
-    color: var(--red);
+    border: double 3px var(--gray);
+    color: var(--gray);
 }
+/* End of Side Area Styling */
 
+/* Start of Current Day Styling */
 .weatherArea {
-    background-color: var(--red);
+    background-color: var(--gray);
     padding: 20px;
     border: double 5px var(--aqua);
     border-radius: 10px;
@@ -134,7 +139,9 @@ input {
     background-color: red;
     color:white;
 }
+/* End of Current Day Styling */
 
+/* Start of Five Day Forecast Styling */
 .fiveDay {
     margin-top: 30px;
 }
@@ -143,3 +150,4 @@ input {
     font-size: large;
     font-weight: bold;
 }
+/* End of Five Day Forecast Styling */
