@@ -175,6 +175,7 @@ searchBtn.onclick = function() {
 // Function if the user enters an invalid city name
 function errorMessage() {
     $('#iconEl').attr('src', null);
+    $('#iconEl').attr('alt', null);
     dateEl.textContent = ''
     cityEl.textContent = 'Error in finding your city!';
     tempEl.textContent = 'Please enter a valid city name, or check your spelling.'
