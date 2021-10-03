@@ -31,6 +31,21 @@ index.html (the structure of the webpage) <br />
 --js folder <br />
 ---script.js (the functionality of the webpage)
 
+# THIRD-PARTY API
+Link to Bootstrap (css): https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css <br />
+Link to Bootstrap (javascript): https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js <br />
+Link to Moment.js (javascript): https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js <br />
+Link to J Query (javascript): https://code.jquery.com/jquery-3.5.0.min.js
+
+# SERVER-SIDE API
+Link to OpenWeather's Website: https://openweathermap.org/ <br />
+
+Link to OpenWeather's API (to get longitude and latitude from the city name): <br />
+api.openweathermap.org/data/2.5/weather?q=(CITY NAME)&appid=(MY API KEY); <br />
+
+Link to OpenWeather's API (from longitude and latitude): <br />
+https://api.openweathermap.org/data/2.5/onecall?lat=(LATITUDE)&lon=(LONGITUDE)&exclude=minutely,hourly,alerts&appid=(MY API KEY)
+
 # SCREENSHOTS
 In this image, this is a what the application looks like if the user loads it up for the first time
 ![WeatherWebPage](https://user-images.githubusercontent.com/88364269/135751633-4307d9a2-39ce-4f8f-9f77-bd5c7059545a.png)
