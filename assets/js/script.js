@@ -20,12 +20,12 @@ let cityName = '';
 let locationArray = [];
 let weatherArray = [];
 let currentDay;
-var cityBtn;
+let cityBtn;
 let iconUrl = '';
 
 // Server API to gather Location for the Weather
 function generateLocation() {
-    var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=06b8acf76066beddfccf87017b0bb7a2';
+    let apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=06b8acf76066beddfccf87017b0bb7a2';
 
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
@@ -44,9 +44,9 @@ function generateLocation() {
 
 // Server API to gather weather information 
 function generateWeather() {
-    var lon = locationArray.coord.lon;
-    var lat = locationArray.coord.lat
-    var apiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon +'&exclude=minutely,hourly,alerts&appid=06b8acf76066beddfccf87017b0bb7a2';
+    let lon = locationArray.coord.lon;
+    let lat = locationArray.coord.lat
+    let apiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon +'&exclude=minutely,hourly,alerts&appid=06b8acf76066beddfccf87017b0bb7a2';
 
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
@@ -97,7 +97,7 @@ function displayWeather() {
     // End of Current Day Weather Forecast
 
     // Start Of 5 Day Weather Forecast
-    var titleEl = document.createElement('h3');
+    let titleEl = document.createElement('h3');
     titleEl.innerHTML = '5-Day Forecast:';
     titleEl.classList = 'center my-2';
     fiveDayForecastEl.appendChild(titleEl);
@@ -110,28 +110,28 @@ function displayWeather() {
         let date = moment(d.dt, 'X')
         let dayIconUrl = 'http://openweathermap.org/img/w/' + d.weather[0].icon + ".png"
 
-        var dayEl = document.createElement('div');
+        let dayEl = document.createElement('div');
         dayEl.classList = 'card col-sm-6 col-md-6 col-lg-4';
 
-        var dayRowEl = document.createElement('div');
+        let dayRowEl = document.createElement('div');
         dayRowEl.classList = 'card-body';
 
-        var dayDateEl = document.createElement('p');
+        let dayDateEl = document.createElement('p');
         dayDateEl.innerHTML = date.format('MM/DD/YYYY');
         dayDateEl.classList = 'miniTitle';
 
-        var dayIconEl = document.createElement('img');
+        let dayIconEl = document.createElement('img');
         dayIconEl.classList = 'icon';
         $(dayIconEl).attr('src', dayIconUrl);
         $(dayIconEl).attr('alt', d.weather[0].description);
 
-        var dayTempEl = document.createElement('p');
+        let dayTempEl = document.createElement('p');
         dayTempEl.innerHTML = 'Temp: ' + kel2Fah + '\u00B0F';
 
-        var dayWindEl = document.createElement('p');
+        let dayWindEl = document.createElement('p');
         dayWindEl.innerHTML = 'Wind: ' + d.wind_speed + ' MPH';
 
-        var dayHumidEl = document.createElement('p');
+        let dayHumidEl = document.createElement('p');
         dayHumidEl.innerHTML = 'Humidity: ' + d.humidity + " %";
 
         // Declares which elements have childrens
@@ -207,4 +207,6 @@ clearBtn.onclick = function() {
 // Function to create search history button when webpage is loaded
 $(document).ready(function () {
     generateButton();
+    cityName = localStorage.key(0);
+    generateLocation();
 })
