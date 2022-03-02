@@ -97,9 +97,9 @@ function displayWeather() {
     // End of Current Day Weather Forecast
 
     // Start Of 5 Day Weather Forecast
-    var titleEl = document.createElement('p');
+    var titleEl = document.createElement('h3');
     titleEl.innerHTML = '5-Day Forecast:';
-    titleEl.classList = 'title fiveDay';
+    titleEl.classList = 'center my-2';
     fiveDayForecastEl.appendChild(titleEl);
 
     // For Loop to Create Each Day's of the Weather Cards
@@ -111,10 +111,10 @@ function displayWeather() {
         let dayIconUrl = 'http://openweathermap.org/img/w/' + d.weather[0].icon + ".png"
 
         var dayEl = document.createElement('div');
-        dayEl.classList = 'col-2 weatherCard';
+        dayEl.classList = 'card col-sm-6 col-md-6 col-lg-4';
 
         var dayRowEl = document.createElement('div');
-        dayRowEl.classList = 'row';
+        dayRowEl.classList = 'card-body';
 
         var dayDateEl = document.createElement('p');
         dayDateEl.innerHTML = date.format('MM/DD/YYYY');
