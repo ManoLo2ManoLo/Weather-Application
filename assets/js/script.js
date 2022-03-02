@@ -30,6 +30,9 @@ function generateLocation() {
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
             response.json().then (function(data) {
+                localStorage.setItem(data.name, '');
+                $('#btnList').children().remove();
+                generateButton();
                 locationArray = data;
                 generateWeather();
             })
@@ -47,9 +50,7 @@ function generateWeather() {
 
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
-            console.log(response);
             response.json().then (function(data) {
-                console.log(data);
                 weatherArray = data;
                 displayWeather();
             })
@@ -150,11 +151,14 @@ function generateButton() {
     for(let j = 0; j < localStorage.length; j++) {
         const key = localStorage.key(j)
 
+        let listItem = document.createElement('li');
+        
         cityBtn = document.createElement('button');
-        cityBtn.classList = 'cityNameBtn'
+        cityBtn.classList = 'dropdown-item'
         cityBtn.innerText = `${key}`;
 
-        btnList.appendChild(cityBtn);
+        listItem.appendChild(cityBtn)
+        btnList.appendChild(listItem);
     }
 
     $("button").each(function() {
@@ -179,9 +183,6 @@ searchBtn.onclick = function() {
         weatherArea.style.display="block";
         fiveDayForecastEl.innerHTML = '';
         generateLocation();
-        localStorage.setItem(cityName, '');
-        $('#btnList').children().remove();
-        generateButton();
     }
 }
 
