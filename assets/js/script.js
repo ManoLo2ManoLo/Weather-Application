@@ -207,6 +207,10 @@ clearBtn.onclick = function() {
 // Function to create search history button when webpage is loaded
 $(document).ready(function () {
     generateButton();
-    cityName = localStorage.key(0);
-    generateLocation();
+    cityName = localStorage.key(0) || '';
+
+    if(cityName) {
+        weatherArea.style.display="block";
+        generateLocation();
+    }
 })
