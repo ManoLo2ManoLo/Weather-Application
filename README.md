@@ -21,7 +21,7 @@ After the user searches for a city's weather forecast, the city name is stored i
 
 Incase the user would like the clear search history, there is a semi-hidden clear search history button on the left side of the navbar. It would clear local storage and reload page, making the search history button list to being cleared, as if the weather app would appear to be loaded for the first time.
 
-# SCREENSHOTS
+## Screenshot
 ![WeatherForecastPage](https://user-images.githubusercontent.com/88364269/135751675-8a70a306-63ba-431c-955b-023cd4d88711.png)
 
 ## Credit
